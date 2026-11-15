@@ -1,0 +1,12 @@
+{
+  "collection": "zone_summary",
+  "source_collection": "trips",
+  "documents": 262,
+  "build_seconds": 582.352,
+  "busiest_zone": {
+    "location_id": 237,
+    "zone": "Upper East Side South",
+    "total_trips": 2125560
+  },
+  "completed_at_utc": "2026-11-15T18:34:44.713683+00:00"
+}

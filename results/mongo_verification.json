@@ -1,0 +1,332 @@
+{
+  "database": "nyc_taxi_analytics",
+  "counts": {
+    "trips": 48722602,
+    "import_history_total": 48722602,
+    "expected_total": 48722602,
+    "matches_postgres": true,
+    "taxi_zones": 265,
+    "zone_summary": 262
+  },
+  "rows_per_month": {
+    "2025-01": 3475226,
+    "2025-02": 3577543,
+    "2025-03": 4145257,
+    "2025-04": 3970553,
+    "2025-05": 4591845,
+    "2025-06": 4322960,
+    "2025-07": 3898963,
+    "2025-08": 3574091,
+    "2025-09": 4251015,
+    "2025-10": 4428699,
+    "2025-11": 4181444,
+    "2025-12": 4305006
+  },
+  "type_checks_sample_100k": {
+    "pickup.datetime": {
+      "found": {
+        "date": 100000
+      },
+      "ok": true
+    },
+    "dropoff.datetime": {
+      "found": {
+        "date": 100000
+      },
+      "ok": true
+    },
+    "pickup.location_id": {
+      "found": {
+        "int": 100000
+      },
+      "ok": true
+    },
+    "dropoff.location_id": {
+      "found": {
+        "int": 100000
+      },
+      "ok": true
+    },
+    "trip_distance": {
+      "found": {
+        "double": 100000
+      },
+      "ok": true
+    },
+    "passenger_count": {
+      "found": {
+        "int": 81586,
+        "missing": 18414
+      },
+      "ok": true
+    },
+    "fare.total_amount": {
+      "found": {
+        "double": 100000
+      },
+      "ok": true
+    },
+    "payment.type_id": {
+      "found": {
+        "int": 100000
+      },
+      "ok": true
+    }
+  },
+  "indexes": {
+    "trips": [
+      {
+        "_id": 1
+      },
+      {
+        "source_month": 1
+      }
+    ],
+    "taxi_zones": [
+      {
+        "_id": 1
+      }
+    ],
+    "zone_summary": [
+      {
+        "_id": 1
+      }
+    ]
+  },
+  "trips_storage_mb": {
+    "data_size": 28128.1,
+    "storage_size": 4388.5,
+    "avg_document_bytes": 577
+  },
+  "samples": {
+    "trips": {
+      "_id": {
+        "$oid": "6af9f3c24653e08015bdfe33"
+      },
+      "source_month": "2025-01",
+      "vendor": {
+        "id": 1,
+        "description": "Creative Mobile Technologies"
+      },
+      "pickup": {
+        "datetime": {
+          "$date": "2025-01-01T00:18:38Z"
+        },
+        "location_id": 229
+      },
+      "dropoff": {
+        "datetime": {
+          "$date": "2025-01-01T00:26:59Z"
+        },
+        "location_id": 237
+      },
+      "passenger_count": 1,
+      "trip_distance": 1.6,
+      "rate_code": {
+        "id": 1,
+        "description": "Standard rate"
+      },
+      "store_and_fwd_flag": "N",
+      "payment": {
+        "type_id": 1,
+        "method": "Credit card"
+      },
+      "fare": {
+        "fare_amount": 10.0,
+        "extra": 3.5,
+        "mta_tax": 0.5,
+        "tip_amount": 3.0,
+        "tolls_amount": 0.0,
+        "improvement_surcharge": 1.0,
+        "congestion_surcharge": 2.5,
+        "airport_fee": 0.0,
+        "cbd_congestion_fee": 0.0,
+        "total_amount": 18.0
+      }
+    },
+    "taxi_zones": {
+      "_id": 132,
+      "borough": "Queens",
+      "zone": "JFK Airport",
+      "service_zone": "Airports"
+    },
+    "zone_summary": {
+      "_id": 237,
+      "total_trips": 2125560,
+      "hourly_stats": [
+        {
+          "hour": 0,
+          "trips": 24129,
+          "avg_distance": 7.22,
+          "avg_total_amount": 20.39,
+          "avg_duration_min": 11.62
+        },
+        {
+          "hour": 1,
+          "trips": 11016,
+          "avg_distance": 2.47,
+          "avg_total_amount": 19.98,
+          "avg_duration_min": 11.25
+        },
+        {
+          "hour": 2,
+          "trips": 4882,
+          "avg_distance": 2.61,
+          "avg_total_amount": 19.75,
+          "avg_duration_min": 10.48
+        },
+        {
+          "hour": 3,
+          "trips": 2920,
+          "avg_distance": 2.74,
+          "avg_total_amount": 20.38,
+          "avg_duration_min": 10.76
+        },
+        {
+          "hour": 4,
+          "trips": 2851,
+          "avg_distance": 3.97,
+          "avg_total_amount": 26.49,
+          "avg_duration_min": 12.17
+        },
+        {
+          "hour": 5,
+          "trips": 4450,
+          "avg_distance": 49.93,
+          "avg_total_amount": 28.95,
+          "avg_duration_min": 12.49
+        },
+        {
+          "hour": 6,
+          "trips": 14731,
+          "avg_distance": 2.63,
+          "avg_total_amount": 20.95,
+          "avg_duration_min": 10.21
+        },
+        {
+          "hour": 7,
+          "trips": 52841,
+          "avg_distance": 1.87,
+          "avg_total_amount": 18.93,
+          "avg_duration_min": 10.71
+        },
+        {
+          "hour": 8,
+          "trips": 80959,
+          "avg_distance": 1.7,
+          "avg_total_amount": 19.07,
+          "avg_duration_min": 10.94
+        },
+        {
+          "hour": 9,
+          "trips": 95285,
+          "avg_distance": 1.66,
+          "avg_total_amount": 19.25,
+          "avg_duration_min": 11.56
+        },
+        {
+          "hour": 10,
+          "trips": 107266,
+          "avg_distance": 4.01,
+          "avg_total_amount": 19.42,
+          "avg_duration_min": 12.02
+        },
+        {
+          "hour": 11,
+          "trips": 123881,
+          "avg_distance": 1.67,
+          "avg_total_amount": 19.95,
+          "avg_duration_min": 12.86
+        },
+        {
+          "hour": 12,
+          "trips": 141028,
+          "avg_distance": 1.81,
+          "avg_total_amount": 19.99,
+          "avg_duration_min": 13.07
+        },
+        {
+          "hour": 13,
+          "trips": 145580,
+          "avg_distance": 2.61,
+          "avg_total_amount": 20.12,
+          "avg_duration_min": 13.19
+        },
+        {
+          "hour": 14,
+          "trips": 163463,
+          "avg_distance": 1.73,
+          "avg_total_amount": 20.22,
+          "avg_duration_min": 13.55
+        },
+        {
+          "hour": 15,
+          "trips": 164454,
+          "avg_distance": 3.13,
+          "avg_total_amount": 20.28,
+          "avg_duration_min": 13.77
+        },
+        {
+          "hour": 16,
+          "trips": 157797,
+          "avg_distance": 3.18,
+          "avg_total_amount": 22.1,
+          "avg_duration_min": 13.83
+        },
+        {
+          "hour": 17,
+          "trips": 164522,
+          "avg_distance": 2.93,
+          "avg_total_amount": 22.08,
+          "avg_duration_min": 13.52
+        },
+        {
+          "hour": 18,
+          "trips": 164346,
+          "avg_distance": 2.06,
+          "avg_total_amount": 21.45,
+          "avg_duration_min": 12.73
+        },
+        {
+          "hour": 19,
+          "trips": 131792,
+          "avg_distance": 2.63,
+          "avg_total_amount": 20.98,
+          "avg_duration_min": 11.69
+        },
+        {
+          "hour": 20,
+          "trips": 115357,
+          "avg_distance": 3.7,
+          "avg_total_amount": 19.97,
+          "avg_duration_min": 11.18
+        },
+        {
+          "hour": 21,
+          "trips": 116219,
+          "avg_distance": 2.21,
+          "avg_total_amount": 20.13,
+          "avg_duration_min": 11.11
+        },
+        {
+          "hour": 22,
+          "trips": 87491,
+          "avg_distance": 2.14,
+          "avg_total_amount": 20.67,
+          "avg_duration_min": 11.7
+        },
+        {
+          "hour": 23,
+          "trips": 48300,
+          "avg_distance": 2.32,
+          "avg_total_amount": 20.69,
+          "avg_duration_min": 11.8
+        }
+      ],
+      "borough": "Manhattan",
+      "zone": "Upper East Side South",
+      "hours_with_pickups": 24
+    }
+  },
+  "verified_at_utc": "2026-11-15T18:48:33.759861+00:00"
+}
