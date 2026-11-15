@@ -1,0 +1,43 @@
+                                                                                             QUERY PLAN                                                                                             
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=1915407.38..1915407.88 rows=200 width=354) (actual time=27329.522..27331.926 rows=6 loops=1)
+   Sort Key: (count(*)) DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=15954 read=1032085
+   ->  Finalize GroupAggregate  (cost=1915337.56..1915399.73 rows=200 width=354) (actual time=27329.476..27331.908 rows=6 loops=1)
+         Group Key: p.description
+         Buffers: shared hit=15951 read=1032085
+         ->  Gather Merge  (cost=1915337.56..1915384.23 rows=400 width=330) (actual time=27329.383..27331.794 rows=17 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=15951 read=1032085
+               ->  Sort  (cost=1914337.54..1914338.04 rows=200 width=330) (actual time=27323.726..27323.728 rows=6 loops=3)
+                     Sort Key: p.description
+                     Sort Method: quicksort  Memory: 26kB
+                     Buffers: shared hit=15951 read=1032085
+                     Worker 0:  Sort Method: quicksort  Memory: 26kB
+                     Worker 1:  Sort Method: quicksort  Memory: 26kB
+                     ->  Partial HashAggregate  (cost=1914327.90..1914329.90 rows=200 width=330) (actual time=27323.648..27323.652 rows=6 loops=3)
+                           Group Key: p.description
+                           Batches: 1  Memory Usage: 40kB
+                           Buffers: shared hit=15935 read=1032085
+                           Worker 0:  Batches: 1  Memory Usage: 40kB
+                           Worker 1:  Batches: 1  Memory Usage: 40kB
+                           ->  Hash Join  (cost=17.20..1406671.12 rows=20306271 width=234) (actual time=0.709..23811.620 rows=16240858 loops=3)
+                                 Hash Cond: (t.payment_type_id = p.payment_type_id)
+                                 Buffers: shared hit=15935 read=1032085
+                                 ->  Parallel Seq Scan on taxi_trips t  (cost=0.00..1352644.00 rows=20306271 width=20) (actual time=0.358..20672.832 rows=16240858 loops=3)
+                                       Filter: ((pickup_datetime >= '2025-01-01 00:00:00'::timestamp without time zone) AND (pickup_datetime < '2026-01-01 00:00:00'::timestamp without time zone))
+                                       Rows Removed by Filter: 10
+                                       Buffers: shared hit=15904 read=1032085
+                                 ->  Hash  (cost=13.20..13.20 rows=320 width=222) (actual time=0.187..0.188 rows=7 loops=3)
+                                       Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                       Buffers: shared hit=3
+                                       ->  Seq Scan on payment_types p  (cost=0.00..13.20 rows=320 width=222) (actual time=0.158..0.160 rows=7 loops=3)
+                                             Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=305 read=10
+ Planning Time: 6.102 ms
+ Execution Time: 27332.124 ms
+(39 rows)
+

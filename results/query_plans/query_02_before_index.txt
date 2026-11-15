@@ -1,0 +1,32 @@
+                                                                                                             QUERY PLAN                                                                                                              
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=1419837.96..1419849.63 rows=100 width=112) (actual time=19450.732..19452.308 rows=100 loops=1)
+   Buffers: shared hit=14795 read=1033409
+   ->  Gather Merge  (cost=1419837.96..1490148.30 rows=602618 width=112) (actual time=19450.730..19452.300 rows=100 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=14795 read=1033409
+         ->  Sort  (cost=1418837.93..1419591.21 rows=301309 width=112) (actual time=19446.314..19446.319 rows=78 loops=3)
+               Sort Key: t.total_amount DESC
+               Sort Method: top-N heapsort  Memory: 48kB
+               Buffers: shared hit=14795 read=1033409
+               Worker 0:  Sort Method: top-N heapsort  Memory: 49kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 48kB
+               ->  Hash Join  (cost=8.96..1407322.12 rows=301309 width=112) (actual time=0.997..19384.415 rows=237103 loops=3)
+                     Hash Cond: (t.pickup_location_id = z.location_id)
+                     Buffers: shared hit=14683 read=1033409
+                     ->  Parallel Seq Scan on taxi_trips t  (cost=0.00..1403496.48 rows=301309 width=36) (actual time=0.619..19010.408 rows=237103 loops=3)
+                           Filter: ((total_amount > '100'::double precision) AND (pickup_datetime >= '2025-01-01 00:00:00'::timestamp without time zone) AND (pickup_datetime < '2026-01-01 00:00:00'::timestamp without time zone))
+                           Rows Removed by Filter: 16003765
+                           Buffers: shared hit=14580 read=1033409
+                     ->  Hash  (cost=5.65..5.65 rows=265 width=28) (actual time=0.212..0.212 rows=265 loops=3)
+                           Buckets: 1024  Batches: 1  Memory Usage: 25kB
+                           Buffers: shared hit=9
+                           ->  Seq Scan on taxi_zones z  (cost=0.00..5.65 rows=265 width=28) (actual time=0.051..0.110 rows=265 loops=3)
+                                 Buffers: shared hit=9
+ Planning:
+   Buffers: shared hit=245 dirtied=1
+ Planning Time: 2.575 ms
+ Execution Time: 19452.444 ms
+(28 rows)
+

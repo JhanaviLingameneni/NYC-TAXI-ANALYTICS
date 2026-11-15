@@ -1,0 +1,35 @@
+                                                                                          QUERY PLAN                                                                                          
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=1607299.73..1607299.79 rows=24 width=108) (actual time=24607.443..24609.626 rows=24 loops=1)
+   Sort Key: (count(*)) DESC
+   Sort Method: quicksort  Memory: 26kB
+   Buffers: shared hit=15926 read=1032080
+   ->  Finalize GroupAggregate  (cost=1607292.32..1607299.18 rows=24 width=108) (actual time=24607.354..24609.603 rows=24 loops=1)
+         Group Key: (EXTRACT(hour FROM pickup_datetime))
+         Buffers: shared hit=15923 read=1032080
+         ->  Gather Merge  (cost=1607292.32..1607297.92 rows=48 width=112) (actual time=24607.266..24609.464 rows=72 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=15923 read=1032080
+               ->  Sort  (cost=1606292.30..1606292.36 rows=24 width=112) (actual time=24601.197..24601.199 rows=24 loops=3)
+                     Sort Key: (EXTRACT(hour FROM pickup_datetime))
+                     Sort Method: quicksort  Memory: 28kB
+                     Buffers: shared hit=15923 read=1032080
+                     Worker 0:  Sort Method: quicksort  Memory: 28kB
+                     Worker 1:  Sort Method: quicksort  Memory: 28kB
+                     ->  Partial HashAggregate  (cost=1606291.45..1606291.75 rows=24 width=112) (actual time=24601.159..24601.163 rows=24 loops=3)
+                           Group Key: EXTRACT(hour FROM pickup_datetime)
+                           Batches: 1  Memory Usage: 24kB
+                           Buffers: shared hit=15909 read=1032080
+                           Worker 0:  Batches: 1  Memory Usage: 24kB
+                           Worker 1:  Batches: 1  Memory Usage: 24kB
+                           ->  Parallel Seq Scan on taxi_trips  (cost=0.00..1403294.53 rows=20299692 width=56) (actual time=0.423..21685.847 rows=16240858 loops=3)
+                                 Filter: ((pickup_datetime >= '2025-01-01 00:00:00'::timestamp without time zone) AND (pickup_datetime < '2026-01-01 00:00:00'::timestamp without time zone))
+                                 Rows Removed by Filter: 10
+                                 Buffers: shared hit=15909 read=1032080
+ Planning:
+   Buffers: shared hit=199 read=1
+ Planning Time: 2.264 ms
+ Execution Time: 24609.841 ms
+(31 rows)
+

@@ -1,0 +1,14 @@
+  borough  |             zone             | total_trips | avg_trip_distance | avg_trip_amount 
+-----------+------------------------------+-------------+-------------------+-----------------
+ Manhattan | Upper East Side South        |     2125560 |              2.64 |           20.50
+ Manhattan | Midtown Center               |     2089754 |              3.42 |           24.92
+ Queens    | JFK Airport                  |     2062453 |             15.04 |           72.62
+ Manhattan | Upper East Side North        |     1874807 |              3.39 |           20.77
+ Manhattan | Penn Station/Madison Sq West |     1543165 |              2.84 |           24.59
+ Manhattan | Times Sq/Theatre District    |     1516403 |              3.34 |           27.15
+ Manhattan | Midtown East                 |     1508176 |              3.11 |           24.14
+ Manhattan | Lincoln Square East          |     1387612 |              3.32 |           21.73
+ Manhattan | Murray Hill                  |     1294387 |              4.22 |           23.29
+ Manhattan | Union Sq                     |     1293642 |              3.40 |           22.40
+(10 rows)
+

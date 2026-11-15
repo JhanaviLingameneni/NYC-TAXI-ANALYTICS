@@ -1,0 +1,32 @@
+                                                                                          QUERY PLAN                                                                                          
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=12608535.54..12635804.29 rows=10907499 width=108) (actual time=42646.575..42646.703 rows=24 loops=1)
+   Sort Key: (count(*)) DESC
+   Sort Method: quicksort  Memory: 26kB
+   Buffers: shared hit=15912 read=1032192, temp read=750914 written=752074
+   ->  Finalize GroupAggregate  (cost=5951343.30..9432152.43 rows=10907499 width=108) (actual time=38926.838..42646.608 rows=24 loops=1)
+         Group Key: (EXTRACT(hour FROM pickup_datetime))
+         Buffers: shared hit=15909 read=1032192, temp read=750914 written=752074
+         ->  Gather Merge  (cost=5951343.30..8859508.73 rows=21814998 width=112) (actual time=38813.231..42641.757 rows=72 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=15909 read=1032192, temp read=750914 written=752074
+               ->  Partial GroupAggregate  (cost=5950343.27..6340516.65 rows=10907499 width=112) (actual time=33673.505..38234.911 rows=24 loops=3)
+                     Group Key: (EXTRACT(hour FROM pickup_datetime))
+                     Buffers: shared hit=15909 read=1032192, temp read=750914 written=752074
+                     ->  Sort  (cost=5950343.27..6001109.20 rows=20306371 width=56) (actual time=33486.673..35453.767 rows=16240858 loops=3)
+                           Sort Key: (EXTRACT(hour FROM pickup_datetime))
+                           Sort Method: external merge  Disk: 667952kB
+                           Buffers: shared hit=15909 read=1032192, temp read=750914 written=752074
+                           Worker 0:  Sort Method: external merge  Disk: 667952kB
+                           Worker 1:  Sort Method: external merge  Disk: 666664kB
+                           ->  Parallel Seq Scan on taxi_trips  (cost=0.00..1403411.43 rows=20306371 width=56) (actual time=0.451..20977.878 rows=16240858 loops=3)
+                                 Filter: ((pickup_datetime >= '2025-01-01 00:00:00'::timestamp without time zone) AND (pickup_datetime < '2026-01-01 00:00:00'::timestamp without time zone))
+                                 Rows Removed by Filter: 10
+                                 Buffers: shared hit=15798 read=1032191
+ Planning:
+   Buffers: shared hit=154 read=16
+ Planning Time: 4.551 ms
+ Execution Time: 42894.444 ms
+(28 rows)
+

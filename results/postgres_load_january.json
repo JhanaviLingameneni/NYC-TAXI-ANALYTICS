@@ -1,0 +1,13 @@
+{
+  "dataset": "yellow_tripdata_2025-01.parquet",
+  "database": "nyc_taxi_analytics",
+  "table": "taxi_trips",
+  "expected_rows": 3475226,
+  "inserted_rows": 3475226,
+  "verified_rows": 3475226,
+  "batch_size": 50000,
+  "duration_seconds": 190.489,
+  "rows_per_second": 18243.69,
+  "completed_at_utc": "2026-11-15T00:11:19.806594+00:00",
+  "status": "success"
+}
