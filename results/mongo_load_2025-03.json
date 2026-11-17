@@ -6,8 +6,8 @@
   "inserted_rows": 4145257,
   "verified_rows": 4145257,
   "batch_size": 50000,
-  "duration_seconds": 89.445,
-  "rows_per_second": 46344.19,
-  "completed_at_utc": "2026-11-15T18:08:13.762607+00:00",
+  "duration_seconds": 444.15,
+  "rows_per_second": 9333.02,
+  "completed_at_utc": "2026-11-15T20:32:16.621857+00:00",
   "status": "success"
 }

@@ -55,8 +55,8 @@
     },
     "passenger_count": {
       "found": {
-        "int": 81586,
-        "missing": 18414
+        "int": 81831,
+        "missing": 18169
       },
       "ok": true
     },
@@ -95,13 +95,13 @@
   },
   "trips_storage_mb": {
     "data_size": 28128.1,
-    "storage_size": 4388.5,
+    "storage_size": 4387.2,
     "avg_document_bytes": 577
   },
   "samples": {
     "trips": {
       "_id": {
-        "$oid": "6af9f3c24653e08015bdfe33"
+        "$oid": "6afa1432d4a0ef74248f0f26"
       },
       "source_month": "2025-01",
       "vendor": {
@@ -328,5 +328,5 @@
       "hours_with_pickups": 24
     }
   },
-  "verified_at_utc": "2026-11-15T18:48:33.759861+00:00"
+  "verified_at_utc": "2026-11-15T21:16:05.031110+00:00"
 }
